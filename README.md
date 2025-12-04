@@ -68,22 +68,22 @@ git clone https://github.com/CommitToLearnn/CommitToLearn.git
 cd CommitToLearn/blog
 
 # Install dependencies | Instale as dependências
-npm install
+bun install
 
 # Start development server | Inicie o servidor de desenvolvimento
-npm run dev
+bun run dev
 # Access at http://localhost:4321 | Acesse em http://localhost:4321
 
 # Build for production | Compile para produção
-npm run build
+bun run build
 ```
 
 ### 🌐 Scripts | Comandos
 
 ```bash
-npm run dev      # Start dev server | Iniciar servidor dev
-npm run build    # Build site | Compilar site
-npm run preview  # Preview build | Visualizar build
+bun run dev      # Start dev server | Iniciar servidor dev
+bun run build    # Build site | Compilar site
+bun run preview  # Preview build | Visualizar build
 ```
 
 ### 🌐 Live Demo | Demonstração
