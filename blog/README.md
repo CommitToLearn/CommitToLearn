@@ -27,7 +27,7 @@ Rede neural interativa para artigos sobre Machine Learning e Deep Learning.
 
 ### Instalar dependências
 ```sh
-npm install
+bun install
 ```
 
 ### Copiar conteúdo existente
@@ -42,13 +42,13 @@ xcopy ..\data .\data\ /E /I
 
 ### Desenvolvimento
 ```sh
-npm run dev
+bun run dev
 ```
 O site estará disponível em `http://localhost:4321`
 
 ### Build para produção
 ```sh
-npm run build
+bun run build
 ```
 
 ## 📝 Adicionando Conteúdo
