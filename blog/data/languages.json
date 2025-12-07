@@ -1130,8 +1130,14 @@
           "slug": "python-flask-microframework",
           "date": "2025-09-26",
           "description": "Introdução prática ao Flask: roteamento com decorators, request/response, Jinja2 e exemplo mínimo de aplicação."
-        }
-        ,
+        },
+        {
+          "title": "__init__ e self em Python",
+          "file": "notes/pt-BR/python/__init__,self.md",
+          "slug": "python-init-self",
+          "date": "2025-12-06",
+          "description": "Entenda o papel do '__init__' e do 'self' em Python com exemplos práticos."
+        },
         {
           "title": "Pydantic",
           "file": "notes/pt-BR/python/pydantic.md",
@@ -1145,6 +1151,36 @@
           "slug": "fastapi",
           "date": "2025-11-08",
           "description": "Framework web Python para APIs rápidas e seguras: ASGI, Pydantic, documentação automática e async/await."
+        }
+      ]
+    },
+    {
+      "name": "JavaScript",
+      "id": "javascript",
+      "color": "#F0DB4F",
+      "icon": "🟨",
+      "notes": [
+        {
+          "title": "Var, Let e Const",
+          "file": "notes/pt-BR/javascript/var_let_const.md",
+          "slug": "javascript-var-let-const",
+          "date": "2025-12-06",
+          "description": "Compare 'var', 'let' e 'const', blocos, hoisting e melhores práticas em JavaScript moderno."
+        }
+      ]
+    },
+    {
+      "name": "React",
+      "id": "react",
+      "color": "#61DAFB",
+      "icon": "⚛️",
+      "notes": [
+        {
+          "title": "Componentes em React",
+          "file": "notes/pt-BR/react/componentes.md",
+          "slug": "react-componentes",
+          "date": "2025-12-06",
+          "description": "Fundamentos de componentes, props, state e boas práticas em React com exemplos práticos."
         }
       ]
     },
