@@ -21,6 +21,8 @@ const categories: Category[] = [
   { name: 'Go', slug: 'go', icon: '🐹' },
   { name: 'Grafana', slug: 'Grafana', icon: '📈' },
   { name: 'Java', slug: 'java', icon: '☕' },
+  { name: 'JavaScript', slug: 'javascript', icon: '/icons/javascript.svg' },
+  { name: 'React', slug: 'react', icon: '⚛️' },
   { name: 'Machine Learning', slug: 'machine-learning', icon: '🤖' },
   { name: 'Node-RED', slug: 'node-red', icon: '🔴' },
   { name: 'ORM', slug: 'orm', icon: '🗃️' },
@@ -59,7 +61,11 @@ export default function CategoryGrid() {
               }}
               transition={{ duration: 0.3 }}
             >
-              {category.icon}
+              {category.slug === 'javascript' ? (
+                <img src={category.icon} alt="JavaScript" className="w-10 h-10" />
+              ) : (
+                category.icon
+              )}
             </motion.div>
             <h3 className="text-white font-semibold text-center">
               {category.name}
