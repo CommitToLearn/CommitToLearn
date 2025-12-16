@@ -12,5 +12,27 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()]
-  }
+  },
+  markdown: {
+    shikiConfig: {
+      theme: 'github-dark',
+      langs: [
+        'javascript',
+        'typescript',
+        'python',
+        'java',
+        'go',
+        'dockerfile',
+        'sql',
+        'bash',
+        'shell',
+        'json',
+        'yaml',
+        'markdown',
+        'html',
+        'css',
+      ],
+      wrap: true,
+    },
+  },
 });
