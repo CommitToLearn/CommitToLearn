@@ -5,7 +5,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
-import hljs from 'highlight.js';
+import { codeToHtml } from 'shiki';
 import readingTime from 'reading-time';
 
 export async function getStaticPaths() {
@@ -38,15 +38,23 @@ export async function getStaticPaths() {
     'Testes': 'Testes'
   };
 
+
   const paths: any[] = [];
 
-  Object.entries(categoryMap).forEach(([slug, folder]) => {
+  // Configure marked
+  marked.use({
+    async: true,
+    breaks: true,
+    gfm: true,
+  });
+
+  for (const [slug, folder] of Object.entries(categoryMap)) {
     const categoryPath = path.join(notesDir, folder);
 
     if (fs.existsSync(categoryPath)) {
       const files = fs.readdirSync(categoryPath).filter(f => f.endsWith('.md'));
       
-      files.forEach(file => {
+      for (const file of files) {
         const filePath = path.join(categoryPath, file);
         const fileContent = fs.readFileSync(filePath, 'utf8');
         const { data, content } = matter(fileContent);
@@ -54,17 +62,33 @@ export async function getStaticPaths() {
         const title = data.title || file.replace(/\.md$/, '').replace(/-/g, ' ');
         const capitalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
         
-        // Configurar marked com highlight.js
-        marked.setOptions({
-          highlight: function(code, lang) {
-            if (lang && hljs.getLanguage(lang)) {
-              try {
-                return hljs.highlight(code, { language: lang }).value;
-              } catch (err) {}
+        // Process markdown with Shiki syntax highlighting
+        const tokens = marked.lexer(content);
+        
+        for (const token of tokens) {
+          if (token.type === 'code') {
+            try {
+              const highlighted = await codeToHtml(token.text, {
+                lang: token.lang || 'text',
+                theme: 'github-dark',
+              });
+              token.type = 'html';
+              token.raw = highlighted;
+              token.text = highlighted;
+            } catch (err) {
+              // Fallback for unsupported languages
+              const escaped = token.text
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+              token.type = 'html';
+              token.raw = `<pre class="shiki github-dark" style="background-color:#24292e;color:#e1e4e8" tabindex="0"><code>${escaped}</code></pre>`;
+              token.text = token.raw;
             }
-            return hljs.highlightAuto(code).value;
-          },
-        });
+          }
+        }
+        
+        const htmlContent = marked.parser(tokens);
         
         const stats = readingTime(content);
         const date = data.date || fs.statSync(filePath).mtime;
@@ -78,14 +102,14 @@ export async function getStaticPaths() {
             category: slug,
             categoryName: folder.charAt(0).toUpperCase() + folder.slice(1).replace(/-/g, ' '),
             title: capitalizedTitle,
-            content: marked(content),
+            content: htmlContent,
             date: date,
             readingTime: stats.text
           }
         });
-      });
+      }
     }
-  });
+  }
 
   return paths;
 }
@@ -297,86 +321,14 @@ const { category, categoryName, title, content, date, readingTime } = Astro.prop
     background: none !important;
     padding: 0 !important;
     border: none !important;
+    color: inherit !important;
     font-family: 'Courier New', monospace;
     font-size: 0.9em;
     line-height: 1.6;
     display: block;
   }
 
-  /* Force syntax highlighting colors with maximum specificity */
-  .markdown-content pre code span.hljs-comment,
-  .markdown-content pre code span.hljs-quote,
-  .markdown-content pre code .hljs-comment,
-  .markdown-content pre code .hljs-quote {
-    color: #8b949e !important;
-    font-style: italic;
-  }
-
-  .markdown-content pre code span.hljs-keyword,
-  .markdown-content pre code span.hljs-selector-tag,
-  .markdown-content pre code span.hljs-literal,
-  .markdown-content pre code span.hljs-type,
-  .markdown-content pre code span.hljs-built_in,
-  .markdown-content pre code .hljs-keyword,
-  .markdown-content pre code .hljs-selector-tag,
-  .markdown-content pre code .hljs-literal,
-  .markdown-content pre code .hljs-type,
-  .markdown-content pre code .hljs-built_in {
-    color: #ff7b72 !important;
-    font-weight: bold;
-  }
-
-  .markdown-content pre code span.hljs-string,
-  .markdown-content pre code span.hljs-title,
-  .markdown-content pre code span.hljs-section,
-  .markdown-content pre code span.hljs-selector-class,
-  .markdown-content pre code .hljs-string,
-  .markdown-content pre code .hljs-title,
-  .markdown-content pre code .hljs-section,
-  .markdown-content pre code .hljs-selector-class {
-    color: #a5d6ff !important;
-  }
-
-  .markdown-content pre code span.hljs-number,
-  .markdown-content pre code span.hljs-meta,
-  .markdown-content pre code .hljs-number,
-  .markdown-content pre code .hljs-meta {
-    color: #79c0ff !important;
-  }
-
-  .markdown-content pre code span.hljs-function,
-  .markdown-content pre code span.hljs-params,
-  .markdown-content pre code span.hljs-attr,
-  .markdown-content pre code span.hljs-property,
-  .markdown-content pre code .hljs-function,
-  .markdown-content pre code .hljs-params,
-  .markdown-content pre code .hljs-attr,
-  .markdown-content pre code .hljs-property {
-    color: #d2a8ff !important;
-  }
-
-  .markdown-content pre code span.hljs-variable,
-  .markdown-content pre code span.hljs-name,
-  .markdown-content pre code span.hljs-tag,
-  .markdown-content pre code .hljs-variable,
-  .markdown-content pre code .hljs-name,
-  .markdown-content pre code .hljs-tag {
-    color: #7ee787 !important;
-  }
-
-  .markdown-content pre code span.hljs-regexp,
-  .markdown-content pre code span.hljs-link,
-  .markdown-content pre code .hljs-regexp,
-  .markdown-content pre code .hljs-link {
-    color: #ffa657 !important;
-  }
-
-  .markdown-content pre code span.hljs-symbol,
-  .markdown-content pre code span.hljs-bullet,
-  .markdown-content pre code .hljs-symbol,
-  .markdown-content pre code .hljs-bullet {
-    color: #f0883e !important;
-  }
+  /* Let Shiki handle all syntax highlighting - do NOT override colors */
 
   .markdown-content ul,
   .markdown-content ol {
@@ -412,7 +364,7 @@ const { category, categoryName, title, content, date, readingTime } = Astro.prop
   }
 
   .markdown-content table {
-    width: 100%;
+    width: 100%
     margin: 1.5rem 0;
     border-collapse: collapse;
   }
