@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/ui/Header';
+import Footer from '../components/ui/Footer';
+import StudiesGrid from '../components/ui/StudiesGrid';
+import { t } from '../utils/i18n';
+import type { Locale } from '../utils/i18n';
+
+const locale: Locale = 'pt-BR';
+
+// Load languages data
+const languagesData = await import('../../data/languages.json');
+const languages = languagesData.languages;
+---
+
+<Layout title={`${t('studies.title', locale)} - CommitToLearn`}>
+  <Header client:load currentPath="/estudos" />
+  
+  <main class="pt-16">
+    <section class="py-16 px-4">
+      <div class="max-w-7xl mx-auto">
+        {/* Header */}
+        <div class="mb-12">
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+            {t('studies.title', locale)}
+          </h1>
+          <p class="text-lg text-gray-400">
+            {t('studies.subtitle', locale)}
+          </p>
+        </div>
+
+        {/* Interactive Grid */}
+        <StudiesGrid 
+          languages={languages}
+          locale={locale}
+          client:load
+        />
+      </div>
+    </section>
+  </main>
+
+  <Footer locale={locale} client:load />
+</Layout>
