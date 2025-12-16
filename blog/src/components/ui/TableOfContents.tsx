@@ -49,11 +49,24 @@ export default function TableOfContents() {
     return () => observer.disconnect();
   }, []);
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, headingId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(headingId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+      // Update URL without jumping
+      window.history.pushState(null, '', `#${headingId}`);
+    }
+  };
+
   if (headings.length < 3) return null;
 
   return (
-    <nav className="sticky top-24 hidden xl:block w-64 shrink-0">
-      <div className="border border-gray-800 bg-black p-6">
+    <nav className="sticky top-24 hidden xl:block w-64 shrink-0 max-h-[calc(100vh-120px)] overflow-y-auto">
+      <div className="border border-gray-800 bg-black p-6 rounded-lg">
         <h3 className="text-sm font-bold uppercase tracking-wider mb-4 text-white">
           Neste Artigo
         </h3>
@@ -65,11 +78,16 @@ export default function TableOfContents() {
             >
               <a
                 href={`#${heading.id}`}
-                className={`block py-1 transition-colors ${
-                  activeId === heading.id
-                    ? 'text-white font-medium'
-                    : 'text-gray-500 hover:text-gray-300'
-                }`}
+                onClick={(e) => handleClick(e, heading.id)}
+                className={`
+                  block py-1 px-2 -mx-2 rounded transition-all duration-200
+                  border-l-2 pl-3
+                  ${
+                    activeId === heading.id
+                      ? 'border-white text-white font-medium bg-gray-900'
+                      : 'border-transparent text-gray-500 hover:text-gray-300 hover:border-gray-700'
+                  }
+                `}
               >
                 {heading.text}
               </a>
