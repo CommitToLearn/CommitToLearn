@@ -19,7 +19,7 @@
 | Feature | Description | Descrição |
 |:---:|:---|:---|
 | ⚡ | Built with Astro 5 | Construído com Astro 5 |
-| 📝 | 182+ Study Notes | 182+ Notas de Estudo |
+| 📝 | 189+ Study Notes | 189+ Notas de Estudo |
 | 📰 | 21 Technical Articles | 21 Artigos Técnicos |
 | 🎨 | Modern Dark Theme | Tema Escuro Moderno |
 | 🔍 | Syntax Highlighting | Destaque de Sintaxe |
@@ -98,9 +98,9 @@ Visite o site ao vivo: [CommitToLearn](https://committolearn.com)
 
 | Metric | Value |
 |:---|:---:|
-| 📝 Total Notes | 182+ |
+| 📝 Total Notes | 189+ |
 | 📰 Articles | 21 |
-| 🏷️ Categories | 22 |
+| 🏷️ Categories | 23 |
 | 🌍 Languages | 2 (PT/EN) |
 | ⚡ Build Time | ~30s |
 | 📦 Bundle Size | < 500KB |
@@ -161,13 +161,14 @@ CommitToLearn/
 | **Python** | 14+ | 🐍 | Advanced Python, Data Science |
 | **Java** | 14+ | ☕ | OOP, Spring, Enterprise Patterns |
 | **Go** | 16+ | 🐹 | Concurrency, Goroutines, Channels |
+| **Rust** | 7+ | 🦀 | Memory Safety, Zero-Cost Abstractions, Systems Programming |
 | **APIs** | 8+ | 🔗 | REST, GraphQL, Idempotency |
 | **SQL** | 9+ | 🗄️ | Queries, Indexing, Optimization |
 | **DevOps** | 8+ | 🚀 | CI/CD, Containerization, Cloud |
 | **Redes** | 8+ | 🌐 | Protocols, Security, Architecture |
 | **Machine Learning** | 10+ | 🤖 | Supervised, Unsupervised, Reinforcement |
 
-**Total:** 182+ study notes across 22 categories | 182+ notas de estudo em 22 categorias
+**Total:** 189+ study notes across 23 categories | 189+ notas de estudo em 23 categorias
 
 </div>
 
