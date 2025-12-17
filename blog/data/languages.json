@@ -1162,10 +1162,67 @@
       ]
     },
     {
+      "name": "Rust",
+      "id": "rust",
+      "color": "#CE422B",
+      "icon": "🦀",
+      "notes": [
+        {
+          "title": "Declarações (let, mut, const, static)",
+          "file": "notes/pt-BR/rust/declaracoes.md",
+          "slug": "rust-declaracoes",
+          "date": "2025-12-17",
+          "description": "Entenda as formas de declarar variáveis em Rust: let, let mut, const e static, com foco em imutabilidade e segurança."
+        },
+        {
+          "title": "Funções em Rust",
+          "file": "notes/pt-BR/rust/fn.md",
+          "slug": "rust-funcoes",
+          "date": "2025-12-17",
+          "description": "Aprenda a definir e usar funções em Rust, incluindo parâmetros, retornos e convenções de nomenclatura."
+        },
+        {
+          "title": "Pattern Matching com match",
+          "file": "notes/pt-BR/rust/match.md",
+          "slug": "rust-match",
+          "date": "2025-12-17",
+          "description": "Domine o controle de fluxo match em Rust para comparar valores contra padrões de forma exaustiva e segura."
+        },
+        {
+          "title": "Method Chaining em Rust",
+          "file": "notes/pt-BR/rust/method_chaining.md",
+          "slug": "rust-method-chaining",
+          "date": "2025-12-17",
+          "description": "Explore o padrão de method chaining para criar código fluente e expressivo em Rust."
+        },
+        {
+          "title": "Path Separator (::) em Rust",
+          "file": "notes/pt-BR/rust/path_separator.md",
+          "slug": "rust-path-separator",
+          "date": "2025-12-17",
+          "description": "Entenda o separador de caminho (::) usado para acessar módulos, funções e tipos em Rust."
+        },
+        {
+          "title": "Referências e Borrowing em Rust",
+          "file": "notes/pt-BR/rust/referencia_borrowing.md",
+          "slug": "rust-referencia-borrowing",
+          "date": "2025-12-17",
+          "description": "Aprenda o sistema de referências e borrowing em Rust para gerenciar memória de forma segura sem garbage collector."
+        },
+        {
+          "title": "A Declaração use em Rust",
+          "file": "notes/pt-BR/rust/use.md",
+          "slug": "rust-use",
+          "date": "2025-12-17",
+          "description": "Simplifique o código importando itens de módulos com a declaração use em Rust."
+        }
+      ]
+    },
+    {
       "name": "JavaScript",
       "id": "javascript",
       "color": "#F0DB4F",
-      "icon": "🟨",
+      "icon": "/icons/javascript.svg",
       "notes": [
         {
           "title": "Var, Let e Const",
