@@ -8,35 +8,12 @@ import matter from 'gray-matter';
 export async function getStaticPaths() {
   const notesDir = path.join(process.cwd(), '../notes/pt-BR');
   
-  const categoryMap: Record<string, string> = {
-    'algoritmos': 'algoritmos',
-    'apis': 'apis',
-    'AWS': 'AWS',
-    'banco': 'banco',
-    'containerizacao': 'containerizacao',
-    'dados': 'dados',
-    'deep-learning': 'deep-learning',
-    'devops': 'devops',
-    'engenharia-de-software': 'engenharia-de-software',
-    'git': 'git',
-    'go': 'go',
-    'Grafana': 'Grafana',
-    'java': 'java',
-    'javascript': 'javascript',
-    'react': 'react',
-    'machine-learning': 'machine-learning',
-    'node-red': 'node-red',
-    'orm': 'orm',
-    'Power BI': 'Power BI',
-    'python': 'python',
-    'redes': 'redes',
-    'sistemas': 'sistemas',
-    'SQL': 'SQL',
-    'Testes': 'Testes'
-  };
+  // Load languages dynamically from languages.json
+  const languagesData = await import('../../../data/languages.json');
+  const languages = languagesData.languages;
 
-  const paths = Object.entries(categoryMap).map(([slug, folder]) => {
-    const categoryPath = path.join(notesDir, folder);
+  const paths = languages.map((lang: any) => {
+    const categoryPath = path.join(notesDir, lang.id);
     const notes: Array<{title: string; slug: string; excerpt: string}> = [];
 
     if (fs.existsSync(categoryPath)) {
@@ -59,10 +36,10 @@ export async function getStaticPaths() {
     }
 
     return {
-      params: { category: slug },
+      params: { category: lang.id },
       props: { 
-        category: slug,
-        categoryName: folder.charAt(0).toUpperCase() + folder.slice(1).replace(/-/g, ' '),
+        category: lang.id,
+        categoryName: lang.name,
         notes 
       }
     };
