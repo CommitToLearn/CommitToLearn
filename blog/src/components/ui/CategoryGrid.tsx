@@ -1,41 +1,28 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
-interface Category {
+interface Language {
+  id: string;
   name: string;
-  slug: string;
   icon: string;
+  notes: { title: string; date: string }[];
 }
 
-const categories: Category[] = [
-  { name: 'Algoritmos', slug: 'algoritmos', icon: '🔄' },
-  { name: 'APIs', slug: 'apis', icon: '🔌' },
-  { name: 'AWS', slug: 'AWS', icon: '☁️' },
-  { name: 'Bancos de Dados', slug: 'banco', icon: '💾' },
-  { name: 'Containerização', slug: 'containerizacao', icon: '🐳' },
-  { name: 'Dados', slug: 'dados', icon: '📊' },
-  { name: 'Deep Learning', slug: 'deep-learning', icon: '🧠' },
-  { name: 'DevOps', slug: 'devops', icon: '🚀' },
-  { name: 'Eng. de Software', slug: 'engenharia-de-software', icon: '⚙️' },
-  { name: 'Git', slug: 'git', icon: '📝' },
-  { name: 'Go', slug: 'go', icon: '🐹' },
-  { name: 'Grafana', slug: 'Grafana', icon: '📈' },
-  { name: 'Java', slug: 'java', icon: '☕' },
-  { name: 'JavaScript', slug: 'javascript', icon: '/icons/javascript.svg' },
-  { name: 'React', slug: 'react', icon: '⚛️' },
-  { name: 'Machine Learning', slug: 'machine-learning', icon: '🤖' },
-  { name: 'Node-RED', slug: 'node-red', icon: '🔴' },
-  { name: 'ORM', slug: 'orm', icon: '🗃️' },
-  { name: 'Power BI', slug: 'Power BI', icon: '📊' },
-  { name: 'Python', slug: 'python', icon: '🐍' },
-  { name: 'Redes', slug: 'redes', icon: '🌐' },
-  { name: 'Sistemas', slug: 'sistemas', icon: '💻' },
-  { name: 'SQL', slug: 'SQL', icon: '🗄️' },
-  { name: 'Testes', slug: 'Testes', icon: '🧪' },
-];
+interface CategoryGridProps {
+  languages: Language[];
+}
 
-export default function CategoryGrid() {
+export default function CategoryGrid({ languages }: CategoryGridProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  // Transform languages into categories format
+  const categories = useMemo(() => {
+    return languages.map(lang => ({
+      name: lang.name,
+      slug: lang.id,
+      icon: lang.icon
+    }));
+  }, [languages]);
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
@@ -61,8 +48,8 @@ export default function CategoryGrid() {
               }}
               transition={{ duration: 0.3 }}
             >
-              {category.slug === 'javascript' ? (
-                <img src={category.icon} alt="JavaScript" className="w-10 h-10" />
+              {category.icon.startsWith('/') ? (
+                <img src={category.icon} alt={category.name} className="w-10 h-10" />
               ) : (
                 category.icon
               )}
@@ -88,4 +75,3 @@ export default function CategoryGrid() {
     </div>
   );
 }
-
