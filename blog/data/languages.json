@@ -1215,6 +1215,34 @@
           "slug": "rust-use",
           "date": "2025-12-17",
           "description": "Simplifique o código importando itens de módulos com a declaração use em Rust."
+        },
+        {
+          "title": "Input Parsing em Rust",
+          "file": "notes/pt-BR/rust/input-parsing.md",
+          "slug": "rust-input-parsing",
+          "date": "2025-12-19",
+          "description": "Aprenda o padrão de leitura de entrada em Rust: String::new, read_line, trim e parse para converter dados do usuário."
+        },
+        {
+          "title": "Loops em Rust (loop, while, for)",
+          "file": "notes/pt-BR/rust/loops.md",
+          "slug": "rust-loops",
+          "date": "2025-12-19",
+          "description": "Domine os três tipos de laços em Rust: loop infinito com retorno, while condicional e for com iteradores seguros."
+        },
+        {
+          "title": "Result, Ok, Err e o Operador ?",
+          "file": "notes/pt-BR/rust/result-ok-err-?.md",
+          "slug": "rust-result-ok-err",
+          "date": "2025-12-19",
+          "description": "Entenda o tratamento de erros em Rust com Result, Ok, Err e o operador ? para propagação elegante de erros."
+        },
+        {
+          "title": "Shadowing em Rust",
+          "file": "notes/pt-BR/rust/shadowing.md",
+          "slug": "rust-shadowing",
+          "date": "2025-12-19",
+          "description": "Aprenda shadowing para redeclarar variáveis com o mesmo nome, permitindo mudança de tipo e transformação de dados."
         }
       ]
     },
