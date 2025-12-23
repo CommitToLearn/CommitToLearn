@@ -83,6 +83,27 @@
           "slug": "apis-grpc",
           "date": "2025-11-04",
           "description": "Implementação de RPC de alta performance usando Protocol Buffers e HTTP/2, ideal para comunicação entre microserviços."
+        },
+        {
+          "title": "OAuth 2.0 (Open Authorization)",
+          "file": "notes/pt-BR/apis/oauth.md",
+          "slug": "apis-oauth",
+          "date": "2025-12-22",
+          "description": "Protocolo de autorização que permite dar permissão a aplicativos sem compartilhar sua senha, usando Access Tokens e escopos."
+        },
+        {
+          "title": "OpenAPI (Swagger)",
+          "file": "notes/pt-BR/apis/openAPI.md",
+          "slug": "apis-openapi",
+          "date": "2025-12-22",
+          "description": "Especificação padrão para documentar APIs REST com YAML/JSON, gerando documentação interativa e SDKs automaticamente."
+        },
+        {
+          "title": "DTO (Data Transfer Object)",
+          "file": "notes/pt-BR/apis/DTO.md",
+          "slug": "apis-dto",
+          "date": "2025-12-22",
+          "description": "Objeto simples usado para transportar dados entre camadas, protegendo a estrutura interna e garantindo segurança."
         }
       ]
     },
@@ -1969,6 +1990,24 @@
       "date": "2025-11-03",
       "category": "ORM",
       "description": "When to use an automatic translator and when to speak your data's native language. And why the right answer might be 'both.'",
+      "lang": "en-US"
+    },
+    {
+      "title": "Pare de Acreditar em Mágica: Por Que Entender o Baixo Nível é o Segredo da Otimização",
+      "file": "articles/porque-é-interessante-entender-o-baixo-nivel.md",
+      "slug": "por-que-entender-o-baixo-nivel",
+      "date": "2025-12-22",
+      "category": "Performance",
+      "description": "Descubra como olhar para baixo do capô das suas abstrações favoritas vai transformar você de um colador de código em um engenheiro de elite.",
+      "lang": "pt-BR"
+    },
+    {
+      "title": "Stop Believing in Magic: Why Understanding the Low Level is the Secret to Optimization",
+      "file": "articles/en-US/why-it's-interesting-to-understand-the-low-level.md",
+      "slug": "why-understand-low-level",
+      "date": "2025-12-22",
+      "category": "Performance",
+      "description": "Discover how looking under the hood of your favorite abstractions will transform you from a code paster into an elite engineer.",
       "lang": "en-US"
     }
   ]
